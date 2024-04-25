@@ -70,7 +70,7 @@ static void MX_USART1_UART_Init(void);
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 {
 	
-  if(counter==10)
+  if(counter==MAXCOUNTER)
   {
     data = HAL_ADC_GetValue(&hadc1);
     counter=1;

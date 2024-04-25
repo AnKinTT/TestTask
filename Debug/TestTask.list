@@ -99,7 +99,7 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
  8000160:	af00      	add	r7, sp, #0
  8000162:	6078      	str	r0, [r7, #4]
 	
-  if(counter==10)
+  if(counter==MAXCOUNTER)
  8000164:	4b11      	ldr	r3, [pc, #68]	@ (80001ac <HAL_ADC_ConvCpltCallback+0x50>)
  8000166:	881b      	ldrh	r3, [r3, #0]
  8000168:	2b0a      	cmp	r3, #10
