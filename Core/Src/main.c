@@ -18,7 +18,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-
+#define MAXCOUNTER 10
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -44,6 +44,7 @@ ADC_HandleTypeDef hadc1;
 
 UART_HandleTypeDef huart1;
 uint16_t data;
+uint16_t counter;
 /* USER CODE BEGIN PV */
 
 /* USER CODE END PV */
@@ -68,9 +69,24 @@ static void MX_USART1_UART_Init(void);
   */
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 {
-	data = HAL_ADC_GetValue(&hadc1);
+	
+  if(counter==10)
+  {
+    data = HAL_ADC_GetValue(&hadc1);
+    counter=1;
+  }
+  else
+  {
+    data += HAL_ADC_GetValue(&hadc1);
+    counter++;
+  }
+
 }
 
+uint16_t getAverageData()
+{
+  return (data/counter);
+}
 
 int main(void)
 {
@@ -88,7 +104,7 @@ int main(void)
   while (1)
   {
 	  HAL_Delay(500);
-	  sprintf(buffer, "%d \n", data);
+	  sprintf(buffer, "%d \n", getAverageData());
 	  HAL_UART_Transmit(&huart1, (uint8_t*)buffer, strlen(buffer), 1000);
   }
   /* USER CODE END 3 */
