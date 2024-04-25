@@ -43,8 +43,8 @@
 ADC_HandleTypeDef hadc1;
 
 UART_HandleTypeDef huart1;
-uint16_t data;
-uint16_t counter;
+uint16_t data=0;
+uint16_t counter=1;
 /* USER CODE BEGIN PV */
 
 /* USER CODE END PV */
